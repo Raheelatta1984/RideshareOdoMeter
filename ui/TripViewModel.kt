@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.LocalTime
 
 class TripViewModel(private val repository: TripRepository) : ViewModel() {
 
@@ -18,18 +19,16 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
     private val _currentTrip = MutableStateFlow<TripEntity?>(null)
     val currentTrip: StateFlow<TripEntity?> = _currentTrip.asStateFlow()
 
-    fun loadTrips() {
+    fun loadAllTrips() {
         viewModelScope.launch {
-            repository.getAllTrips().collect { tripList ->
-                _trips.value = tripList
-            }
+            repository.getAllTrips().collect { _trips.value = it }
         }
     }
 
-    fun startNewTrip(startKm: Double, purpose: String = "Business", location: String? = null) {
+    fun startNewTrip(startKm: Double, purpose: String = TripEntity.PURPOSE_BUSINESS, location: String? = null) {
         val newTrip = TripEntity(
             date = LocalDate.now(),
-            timeStart = java.time.LocalTime.now(),
+            timeStart = LocalTime.now(),
             startKm = startKm,
             purpose = purpose,
             location = location
@@ -40,18 +39,21 @@ class TripViewModel(private val repository: TripRepository) : ViewModel() {
     fun endCurrentTrip(endKm: Double, endLocation: String? = null, notes: String? = null) {
         val current = _currentTrip.value ?: return
 
+        val distance = if (endKm > current.startKm) endKm - current.startKm else 0.0
+
         val completedTrip = current.copy(
-            timeEnd = java.time.LocalTime.now(),
+            timeEnd = LocalTime.now(),
             endKm = endKm,
             endLocation = endLocation,
             notes = notes,
-            distanceKm = current.calculateDistance()  // or recalculate properly
+            distanceKm = distance,
+            updatedAt = System.currentTimeMillis()
         )
 
         viewModelScope.launch {
             repository.insertTrip(completedTrip)
             _currentTrip.value = null
-            loadTrips() // refresh list
+            loadAllTrips()
         }
     }
 
