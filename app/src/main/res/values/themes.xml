@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <style name="Theme.RideshareOdoMeter" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:colorPrimary">@color/primary</item>
-        <item name="android:colorSecondary">@color/secondary</item>
-        <item name="android:colorTertiary">@color/tertiary</item>
-        <item name="android:statusBarColor">@color/primary</item>
-        <item name="android:navigationBarColor">@color/background</item>
+    <style name="Theme.RideshareOdoMeter" parent="android:Theme.Material.Light">
+        <item name="android:colorPrimary">@color/md_theme_light_primary</item>
+        <item name="android:colorPrimaryDark">@color/md_theme_light_primary</item>
+        <item name="android:colorAccent">@color/md_theme_light_secondary</item>
+        <item name="android:windowBackground">@color/md_theme_light_background</item>
     </style>
-
 </resources>

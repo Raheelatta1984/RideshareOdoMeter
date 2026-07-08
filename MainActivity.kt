@@ -18,57 +18,45 @@ import com.rideshare.odometer.ui.screens.HomeScreen
 
 class MainActivity : ComponentActivity() {
 
-        private val requestPermissionsLauncher = registerForActivityResult(
-                    ActivityResultContracts.RequestMultiplePermissions()
-        ) { permissions ->
-                // Handle permission results
-                        if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
-                                        // Location permission granted
-                        }
+    private val requestPermissionsLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        // Handle permission results
+        if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
+            // Location permission granted
         }
+    }
 
-            override fun onCreate(savedInstanceState: Bundle?) {
-                        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-                                // Request necessary permissions
-                                        checkAndRequestPermissions()
+        // Request necessary permissions
+        checkAndRequestPermissions()
 
-                                                setContent {
-                                                                RideshareOdoMeterTheme {
-                                                                                    Surface(
-                                                                                                            modifier = Modifier.fillMaxSize(),
-                                                                                                                                color = MaterialTheme.colorScheme.background
-                                                                                    ) {
-                                                                                                            HomeScreen()
-                                                                                    }
-                                                                }
-                                                }
-            }
-
-                private fun checkAndRequestPermissions() {
-                            val permissions = arrayOf(
-                                            Manifest.permission.ACCESS_FINE_LOCATION,
-                                                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                                                                    Manifest.permission.FOREGROUND_SERVICE,
-                                                                                Manifest.permission.FOREGROUND_SERVICE_LOCATION
-                            )
-
-                                    if (permissions.any { 
-                                                    ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED 
-                                    }) {
-                                                    requestPermissionsLauncher.launch(permissions)
-                                    }
+        setContent {
+            RideshareOdoMeterTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    HomeScreen()
                 }
-}
-                                    }
-                                    })
-                            )
-                }
-                                                                                    }
-                                                                                    )
-                                                                }
-                                                }
             }
-                        }}
+        }
+    }
+
+    private fun checkAndRequestPermissions() {
+        val permissions = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.FOREGROUND_SERVICE,
+            Manifest.permission.FOREGROUND_SERVICE_LOCATION
         )
+
+        if (permissions.any {
+                ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
+            }) {
+            requestPermissionsLauncher.launch(permissions)
+        }
+    }
 }

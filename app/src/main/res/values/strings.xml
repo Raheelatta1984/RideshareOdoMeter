@@ -1,54 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">RideshareOdoMeter</string>
-    
-    <!-- Main Screen -->
-    <string name="start_trip">Start Trip</string>
-    <string name="stop_trip">Stop Trip</string>
-    <string name="current_status">Current Status</string>
-    <string name="trip_active">Trip Active</string>
-    <string name="trip_inactive">Trip Inactive</string>
-    
-    <!-- Odometer Input -->
-    <string name="start_odometer">Start Odometer (km)</string>
-    <string name="end_odometer">End Odometer (km)</string>
-    <string name="trip_distance">Distance: %1$s km</string>
-    
-    <!-- Trip Details -->
-    <string name="trip_date">Date</string>
-    <string name="trip_purpose">Purpose</string>
-    <string name="trip_business">Business</string>
-    <string name="trip_personal">Personal</string>
-    <string name="trip_location">Location</string>
-    <string name="trip_suburb">Suburb</string>
-    <string name="trip_postcode">Postcode</string>
-    
-    <!-- Actions -->
-    <string name="save_trip">Save Trip</string>
-    <string name="delete_trip">Delete Trip</string>
-    <string name="view_history">View History</string>
-    <string name="export_data">Export Data</string>
-    
-    <!-- Validation Messages -->
-    <string name="error_invalid_distance">End odometer must be greater than start odometer</string>
-    <string name="error_permission_denied">Location permission denied. Required for trip tracking.</string>
-    <string name="error_location_unavailable">Unable to retrieve current location</string>
-    <string name="success_trip_saved">Trip saved successfully</string>
-    
-    <!-- Swarm Status -->
-    <string name="swarm_status">Swarm Status: ONLINE</string>
-    <string name="swarm_agent">Agent: RideshareOdoMeter v1.0</string>
-    <string name="sync_status">Sync: Local Storage (ATO Compliant)</string>
-    
-    <!-- ATO Disclaimer -->
-    <string name="ato_disclaimer">⚠️ DISCLAIMER\n\nThis app is designed to assist with Australian Taxation Office (ATO) logbook requirements for rideshare drivers.\n\nYou are responsible for:\n• Verifying odometer readings accuracy\n• Ensuring compliance with ATO 12-week representative period rules\n• Maintaining records for tax purposes\n\nData is stored locally on your device. Regular backups are recommended.\n\nFor official ATO guidelines, visit: www.ato.gov.au</string>
-    
-    <!-- Permission Requests -->
-    <string name="permission_location">Location Permission</string>
-    <string name="permission_location_desc">This app needs access to your location to track trip distances and locations for ATO logbook compliance.</string>
-    <string name="permission_camera">Camera Permission</string>
-    <string name="permission_camera_desc">Camera access allows you to photograph odometer readings for verification.</string>
-    <string name="allow">Allow</string>
-    <string name="deny">Deny</string>
-    
+    <string name="app_description">ATO Compliant Rideshare Trip Logger</string>
 </resources>

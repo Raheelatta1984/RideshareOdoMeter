@@ -6,15 +6,19 @@ import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 /**
- * DateTimeConverters: Room type converters for Java 8 date/time types
+ * DateTimeConverters: Room TypeConverters for LocalDate and LocalTime
+ * 
+ * Converts between Room-compatible types (Long/String) and Java 8 time types
  */
 class DateTimeConverters {
     
-    private val dateFormatter = DateTimeFormatter.ISO_LOCAL_DATE
-    private val timeFormatter = DateTimeFormatter.ISO_LOCAL_TIME
+    companion object {
+        private val dateFormatter = DateTimeFormatter.ISO_LOCAL_DATE
+        private val timeFormatter = DateTimeFormatter.ISO_LOCAL_TIME
+    }
     
     /**
-     * Convert LocalDate to String for database storage
+     * Convert LocalDate to String for Room storage
      */
     @TypeConverter
     fun fromLocalDate(date: LocalDate?): String? {
@@ -22,7 +26,7 @@ class DateTimeConverters {
     }
     
     /**
-     * Convert String to LocalDate from database
+     * Convert String back to LocalDate
      */
     @TypeConverter
     fun toLocalDate(dateString: String?): LocalDate? {
@@ -30,7 +34,7 @@ class DateTimeConverters {
     }
     
     /**
-     * Convert LocalTime to String for database storage
+     * Convert LocalTime to String for Room storage
      */
     @TypeConverter
     fun fromLocalTime(time: LocalTime?): String? {
@@ -38,9 +42,10 @@ class DateTimeConverters {
     }
     
     /**
-     * Convert String to LocalTime from database
+     * Convert String back to LocalTime
      */
     @TypeConverter
     fun toLocalTime(timeString: String?): LocalTime? {
         return timeString?.let { LocalTime.parse(it, timeFormatter) }
     }
+}
